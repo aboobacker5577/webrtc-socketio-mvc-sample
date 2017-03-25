@@ -71,9 +71,10 @@ socket.sockets.on('connection',function (socket) {
 
     });
     socket.on('offer',function (data,callback) {
-        var jsonObj=JSON.parse(data);
+        var jsonObj=data;
         var to=jsonObj.to;
         var sdp=jsonObj.sdp;
+        console.log(sdp);
         if (to in users){
             users[to].emit('offer',{sdp:sdp,from:socket.nickname});
             console.log("offer passed to callee(B)");
@@ -82,7 +83,7 @@ socket.sockets.on('connection',function (socket) {
         }
     });
     socket.on('ringing',function (data,callback) {
-        var jsonObj=JSON.parse(data);
+        var jsonObj=data;
         var from=jsonObj.from;
         var  to=jsonObj.to;
         if (to in users){
@@ -94,7 +95,7 @@ socket.sockets.on('connection',function (socket) {
     });
 
     socket.on('answer',function (data,callback) {
-        var jsonObj=JSON.parse(data);
+        var jsonObj=data;
         var from=jsonObj.from;
         var to=jsonObj.to;
         var sdp=jsonObj.sdp;
@@ -107,7 +108,7 @@ socket.sockets.on('connection',function (socket) {
     });
 
     socket.on('ack',function (data,callback) {
-        var jsonObj=JSON.parse(data);
+        var jsonObj=data;
         var from=jsonObj.from;
         var to=jsonObj.to;
         if (to in users){
@@ -125,7 +126,7 @@ socket.sockets.on('connection',function (socket) {
     });
 
     socket.on('ice',function (data) {
-        var jsonObj=JSON.parse(data);
+        var jsonObj=data;
         var to=jsonObj.to;
         var sdp=jsonObj.sdp;
         var sdpMid=jsonObj.sdpMid;
@@ -138,7 +139,7 @@ socket.sockets.on('connection',function (socket) {
         }
     });
     socket.on('iceremove',function (data) {
-        var jsonObj=JSON.parse(data);
+        var jsonObj=data;
         var to=jsonObj.to;
         var sdp=jsonObj.sdp;
         var sdpMid=jsonObj.sdpMid;
