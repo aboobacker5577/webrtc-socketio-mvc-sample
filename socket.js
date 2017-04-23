@@ -36,7 +36,11 @@ socket.sockets.on('connection',function (socket) {
     });
 
     function updateNicknames() {
-        socket.emit('usernames',Object.keys(users));
+
+        Object.keys(users).forEach(function (user) {
+            users[user].emit('usernames',Object.keys(users));
+        });
+       // socket.emit('usernames',Object.keys(users));
     }
 
     socket.on('send message', function (data,callback) {
@@ -101,7 +105,7 @@ socket.sockets.on('connection',function (socket) {
         var sdp=jsonObj.sdp;
         if (to in users){
             users[to].emit('answer',{from:from,sdp:sdp});
-            console.log("answer is passed from callee(B) to caller(A)");
+            console.log("answer is passed from callee(B) to caller(A)"+to);
         }else {
             callback("error:call failed")
         }
