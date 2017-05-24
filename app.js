@@ -26,7 +26,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //app.use('/', index);
 app.get('/',function (req,res) {
-  res.sendfile('chat.html');
+  res.sendfile(__dirname+'/chat.html');
 });
 
 
