@@ -19,9 +19,9 @@ app.set('port', port);
  * Create HTTP server.
  */
 
-//var server = http.createServer(app);
+var server = http.createServer(app);
 
-var server=app.listen(port);
+//var server=app.listen(port);
 var io=require('../socket').attach(server);
 
 
