@@ -22,7 +22,7 @@ app.set('port', port);
 //var server = http.createServer(app);
 
 var server=app.listen(port);
-var io=require('../socket').listen(server);
+var io=require('../socket').attach(server);
 
 
 

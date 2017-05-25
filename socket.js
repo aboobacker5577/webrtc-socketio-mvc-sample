@@ -4,8 +4,7 @@
 /**
  * Created by nikhil on 7/11/16.
  */
-var io=require('socket.io');
-var socket=new io();
+var socket = require('socket.io')({ transports: ['websocket'] });
 var mongoose=require('mongoose');
 var chat=mongoose.model('chat');
 var  users={ };
