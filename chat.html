@@ -44,7 +44,7 @@
 <script src="/socket.io/socket.io.js"></script>
 <script>
     jQuery(function ($) {
-        var socket=io.connect();
+        var socket=io({transports:['websocket']});
         var $nickForm=$('#setNick');
         var $nickError=$('#nickError');
         var $nickBox=$('#nickname');
