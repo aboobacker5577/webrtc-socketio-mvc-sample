@@ -80,7 +80,7 @@ socket.sockets.on('connection',function (socket) {
         console.log(sdp);
         if (to in users){
             users[to].emit('offer',{sdp:sdp,from:socket.nickname});
-            console.log("offer passed to callee(B)");
+            console.log("offer passed from:"+socket.nickname+" -----to:"+to);
         } else {
             callback("info:user not available");
         }
@@ -91,7 +91,7 @@ socket.sockets.on('connection',function (socket) {
         var  to=jsonObj.to;
         if (to in users){
             users[to].emit('ringing',{from:from});
-            console.log("ringing status send to caller(A)")
+            console.log("ringing status from:"+from+"-----to:"+to);
         }else {
             callback("info:user not available")
         }
@@ -104,7 +104,7 @@ socket.sockets.on('connection',function (socket) {
         var sdp=jsonObj.sdp;
         if (to in users){
             users[to].emit('answer',{from:from,sdp:sdp});
-            console.log("answer is passed from callee(B) to caller(A)"+to);
+            console.log("answer is passed from:"+from+"------to:"+to);
         }else {
             callback("error:call failed")
         }
@@ -136,7 +136,7 @@ socket.sockets.on('connection',function (socket) {
         var sdpMLineIndex=jsonObj.sdpMLineIndex;
         if (to in users){
             users[to].emit('ice',{sdp:sdp,from:socket.nickname,sdpMid:sdpMid,sdpMLineIndex:sdpMLineIndex});
-            console.log("ice message passed to callee(B)");
+            console.log("ice message passed from:"+socket.nickname+"-------to:"+to);
         } else {
             callback("info:user not available");
         }
@@ -149,7 +149,7 @@ socket.sockets.on('connection',function (socket) {
         var sdpMLineIndex=jsonObj.sdpMLineIndex;
         if (to in users){
             users[to].emit('iceremove',{sdp:sdp,from:socket.nickname,sdpMid:sdpMid,sdpMLineIndex:sdpMLineIndex});
-            console.log("ice remove message passed to callee(B)");
+            console.log("ice remove message passed from :+"+socket.nickname+"----to:"+to);
         } else {
             callback("info:user not available");
         }
